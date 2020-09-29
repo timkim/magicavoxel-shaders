@@ -1,0 +1,52 @@
+// MIT License (MIT)
+// https://github.com/timkim/magicavoxel-shaders
+// Copyright (c) 2020 Tim Kim
+//
+// xs_begin
+// author : '@timkimtimkim'
+// arg : { id = '0'  name = 'Animation'  value = '1'  range = '0 15'  step = '1'  decimal = '0' }
+// xs_end
+
+//===== built-in args =====
+// uniform vec3		i_volume_size;	// volume size [1-256]
+// uniform float	i_color_index;	// color index [0-255]
+// uniform vec3		i_mirror;		// mirror mode [0,1]
+// uniform vec3		i_axis;			// axis mode [0,1]
+// uniform float	i_iter;			// iteration index
+
+//===== built-in functions ===== 
+// float voxel( vec3 v );			// get voxel color index at position v
+
+float plot(vec3 st, float pct) {    
+    return abs(step(pct-3.0, st.z) - step(pct+3.0, st.z));
+}
+
+float map(vec3 v) {
+    float anim = i_args[0];
+
+    vec3 vs = floor(v);
+    float vsScale = (vs.x/10.0);
+    float y = (-1.0 * pow(vsScale, 2.0)) + (25.0 * vsScale) - 0.0;
+
+    if(plot(vs, y) != 0.0) {
+        if(vs.x == (anim * 17.0)) {
+            return 2.0;
+        } else if(vs.x == ((anim * 17.0) - 1.0)){
+            return 3.0;
+        } else if(vs.x == ((anim * 17.0) - 2.0)){
+            return 4.0;
+        } else if(vs.x == ((anim * 17.0) - 3.0)){
+            return 5.0;
+        } else if(vs.x == ((anim * 17.0) - 4.0)){
+            return 6.0;
+        } else if(vs.x == ((anim * 17.0) - 5.0)){
+            return 7.0;
+        } else if(vs.x <= (anim * 17.0)) {
+            return 8.0;
+        } else {
+            return -1.0;
+        }
+    } else {
+        return -1.0;
+    }
+}
