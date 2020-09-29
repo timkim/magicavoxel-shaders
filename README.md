@@ -10,3 +10,6 @@ own MagicaVoxel's folder structure under the `MagicaVoxel-x.xx.x-xxx/shader/` fo
 in understanding how MagicaVoxel's shaders work internally. I'd highly recommend you start there. 
 
 As well as the resource [thebookofshaders.com](thebookofshaders.com).
+
+# My voxel art
+You can follow my voxel art on Instagram [@timkimtimkim](https://www.instagram.com/timkimtimkim/).
